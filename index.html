@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Form Stok Gudang</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 2em;
+      max-width: 600px;
+      margin: auto;
+    }
+    input, button {
+      display: block;
+      margin-bottom: 1em;
+      padding: 0.5em;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <h2>Form Input Stok Gudang</h2>
+  <form id="myForm">
+    <input name="article" type="text" placeholder="Article" required />
+    <input name="qty" type="number" placeholder="Quantity" required />
+    <button type="submit">Kirim</button>
+  </form>
+
+  <p id="msg"></p>
+
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbx3_4nl6-l4DKvZQDU85ZnWzjjlYSugFGQriMPJHU6KqNQd0K6CLJSxZXAdwdpePuXF/exec'; // Ganti ini
+    const form = document.getElementById('myForm');
+    const msg = document.getElementById('msg');
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+          msg.innerText = "Berhasil dikirim!";
+          form.reset();
+        })
+        .catch(error => {
+          msg.innerText = "Gagal mengirim!";
+          console.error('Error!', error.message);
+        });
+    });
+  </script>
+</body>
+</html>
