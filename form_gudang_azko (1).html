@@ -1,0 +1,131 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Gudang AZ•KO</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #b71c1c;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 400px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            margin-top: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            color: white;
+        }
+
+        .btn-in {
+            background-color: #8BC34A;
+            margin-bottom: 10px;
+        }
+
+        .btn-out {
+            background-color: #f44336;
+        }
+
+        img.logo {
+            display: block;
+            margin: 0 auto 20px auto;
+            max-width: 150px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="logo.png" alt="AZ•KO Logo" class="logo">
+        <h2>Form Gudang AZ•KO</h2>
+        <div class="form-group">
+            <input type="text" id="article" placeholder="Article">
+        </div>
+        <div class="form-group">
+            <input type="number" id="qty" placeholder="Qty">
+        </div>
+        <div class="form-group">
+            <input type="text" id="pic" placeholder="PIC">
+        </div>
+        <div class="form-group">
+            <select id="reason">
+                <option value="in">IN</option>
+                <option value="out">OUT</option>
+            </select>
+        </div>
+        <button class="btn-in" onclick="submitForm('in')">IN</button>
+        <button class="btn-out" onclick="submitForm('out')">OUT</button>
+    </div>
+
+    <script>
+        const scriptURL = "https://script.google.com/macros/s/AKfycbxc0I4EWBVyDdTWqNzAgBBS4PHO8HSvB4RYjeL4NV1kFUnBaCLP10VASPbno_JLNs2a/exec";
+
+        function submitForm(actionType) {
+            const article = document.getElementById('article').value;
+            const qty = document.getElementById('qty').value;
+            const pic = document.getElementById('pic').value;
+            const reason = actionType;
+
+            if (!article || !qty || !pic) {
+                alert("Harap isi semua data!");
+                return;
+            }
+
+            const data = new FormData();
+            data.append("article", article);
+            data.append("qty", qty);
+            data.append("pic", pic);
+            data.append("reason", reason);
+
+            fetch(scriptURL, {
+                method: 'POST',
+                body: data
+            })
+            .then(response => {
+                alert("Data berhasil dikirim!");
+                document.getElementById("article").value = "";
+                document.getElementById("qty").value = "";
+                document.getElementById("pic").value = "";
+            })
+            .catch(error => {
+                console.error('Error!', error.message);
+                alert("Gagal mengirim data.");
+            });
+        }
+    </script>
+</body>
+</html>
