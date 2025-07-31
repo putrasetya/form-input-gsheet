@@ -1,32 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
   <title>Form Gudang</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      max-width: 400px;
-      margin: 40px auto;
-      background: #f5f5f5;
-      padding: 20px;
-      border-radius: 10px;
-    }
-    input, select, button {
-      width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-    }
-    button {
-      background-color: #4CAF50;
-      color: white;
-      font-weight: bold;
-    }
-  </style>
 </head>
 <body>
-  <h2>Input Stok Gudang</h2>
+  <h2>Input Data Gudang</h2>
   <form id="gudang-form">
     <input type="text" name="article" placeholder="Article" required />
     <input type="number" name="qty" placeholder="Qty" required />
@@ -46,12 +25,12 @@
     form.addEventListener("submit", (e) => {
       e.preventDefault();
       const formData = new FormData(form);
-      fetch(scriptURL, { method: "POST", body: formData })
-        .then((res) => {
-          alert("Data berhasil dikirim!");
-          form.reset();
-        })
-        .catch((err) => alert("Gagal mengirim data!"));
+      fetch(scriptURL, {
+        method: "POST",
+        body: formData
+      })
+      .then(response => alert("Berhasil dikirim"))
+      .catch(error => alert("Gagal mengirim!"));
     });
   </script>
 </body>
