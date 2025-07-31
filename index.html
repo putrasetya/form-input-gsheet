@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Form Gudang AZ•KO</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       background-color: #b71c1c;
@@ -14,38 +18,45 @@
       align-items: flex-start;
       min-height: 100vh;
     }
+
     .container {
       width: 100%;
-      max-width: 400px;
+      max-width: 360px;
       margin-top: 40px;
-      padding: 0 20px;
+      padding: 0 16px;
       text-align: center;
     }
+
     .logo {
-      max-width: 140px;
+      max-width: 150px;
       margin: 0 auto 24px;
     }
+
     .form-input {
-      margin-bottom: 12px;
+      margin-bottom: 14px;
       width: 100%;
       padding: 12px;
       border-radius: 8px;
       border: none;
       font-size: 16px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
     }
+
     .btn {
       width: 100%;
       padding: 14px;
-      margin-top: 8px;
+      margin-top: 10px;
       border: none;
       border-radius: 8px;
       font-size: 16px;
       color: white;
       cursor: pointer;
     }
+
     .btn-in {
       background-color: #4CAF50;
     }
+
     .btn-out {
       background-color: #f44336;
     }
@@ -53,9 +64,8 @@
 </head>
 <body>
   <div class="container">
-    <!-- Ganti src jika perlu -->
     <img src="logo.png" alt="AZ•KO Logo" class="logo" />
-
+    
     <input type="text" class="form-input" placeholder="Article" />
     <input type="number" class="form-input" placeholder="Qty" />
     <input type="text" class="form-input" placeholder="PIC" />
