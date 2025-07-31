@@ -1,131 +1,70 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Gudang AZ•KO</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #b71c1c;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            color: white;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 400px;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        input, select {
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            margin-top: 5px;
-        }
-
-        button {
-            width: 100%;
-            padding: 14px;
-            font-size: 16px;
-            font-weight: bold;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            color: white;
-        }
-
-        .btn-in {
-            background-color: #8BC34A;
-            margin-bottom: 10px;
-        }
-
-        .btn-out {
-            background-color: #f44336;
-        }
-
-        img.logo {
-            display: block;
-            margin: 0 auto 20px auto;
-            max-width: 150px;
-        }
-
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Form Gudang AZ•KO</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #b71c1c;
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .container {
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+    }
+    .logo {
+      max-width: 150px;
+      margin: 0 auto 24px;
+    }
+    .form-input, .form-select {
+      margin-bottom: 12px;
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      font-size: 16px;
+    }
+    .btn {
+      width: 100%;
+      padding: 14px;
+      margin-top: 8px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      color: white;
+      cursor: pointer;
+    }
+    .btn-in {
+      background-color: #4CAF50;
+    }
+    .btn-out {
+      background-color: #f44336;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <img src="logo.png" alt="AZ•KO Logo" class="logo">
-        
-        <div class="form-group">
-            <input type="text" id="article" placeholder="Article">
-        </div>
-        <div class="form-group">
-            <input type="number" id="qty" placeholder="Qty">
-        </div>
-        <div class="form-group">
-            <input type="text" id="pic" placeholder="PIC">
-        </div>
-        <div class="form-group">
-            <select id="reason">
-                <option value="in">IN</option>
-                <option value="out">OUT</option>
-            </select>
-        </div>
-        <button class="btn-in" onclick="submitForm('in')">IN</button>
-        <button class="btn-out" onclick="submitForm('out')">OUT</button>
-    </div>
-
-    <script>
-        const scriptURL = "https://script.google.com/macros/s/AKfycbxc0I4EWBVyDdTWqNzAgBBS4PHO8HSvB4RYjeL4NV1kFUnBaCLP10VASPbno_JLNs2a/exec";
-
-        function submitForm(actionType) {
-            const article = document.getElementById('article').value;
-            const qty = document.getElementById('qty').value;
-            const pic = document.getElementById('pic').value;
-            const reason = actionType;
-
-            if (!article || !qty || !pic) {
-                alert("Harap isi semua data!");
-                return;
-            }
-
-            const data = new FormData();
-            data.append("article", article);
-            data.append("qty", qty);
-            data.append("pic", pic);
-            data.append("reason", reason);
-
-            fetch(scriptURL, {
-                method: 'POST',
-                body: data
-            })
-            .then(response => {
-                alert("Data berhasil dikirim!");
-                document.getElementById("article").value = "";
-                document.getElementById("qty").value = "";
-                document.getElementById("pic").value = "";
-            })
-            .catch(error => {
-                console.error('Error!', error.message);
-                alert("Gagal mengirim data.");
-            });
-        }
-    </script>
+  <div class="container">
+    <!-- Ganti src di bawah ini dengan logo kamu -->
+    <img src="logo.png" alt="AZ•KO Logo" class="logo" />
+    
+    <input type="text" class="form-input" placeholder="Article" />
+    <input type="number" class="form-input" placeholder="Qty" />
+    <input type="text" class="form-input" placeholder="PIC" />
+    
+    <select class="form-select">
+      <option value="IN">IN</option>
+      <option value="OUT">OUT</option>
+    </select>
+    
+    <button class="btn btn-in">IN</button>
+    <button class="btn btn-out">OUT</button>
+  </div>
 </body>
 </html>
