@@ -8,22 +8,24 @@
     body {
       margin: 0;
       background-color: #b71c1c;
-      font-family: 'Arial', sans-serif;
+      font-family: Arial, sans-serif;
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: flex-start;
       min-height: 100vh;
     }
     .container {
-      width: 90%;
+      width: 100%;
       max-width: 400px;
+      margin-top: 40px;
+      padding: 0 20px;
       text-align: center;
     }
     .logo {
-      max-width: 150px;
+      max-width: 140px;
       margin: 0 auto 24px;
     }
-    .form-input, .form-select {
+    .form-input {
       margin-bottom: 12px;
       width: 100%;
       padding: 12px;
@@ -51,18 +53,13 @@
 </head>
 <body>
   <div class="container">
-    <!-- Ganti src di bawah ini dengan logo kamu -->
+    <!-- Ganti src jika perlu -->
     <img src="logo.png" alt="AZ•KO Logo" class="logo" />
-    
+
     <input type="text" class="form-input" placeholder="Article" />
     <input type="number" class="form-input" placeholder="Qty" />
     <input type="text" class="form-input" placeholder="PIC" />
-    
-    <select class="form-select">
-      <option value="IN">IN</option>
-      <option value="OUT">OUT</option>
-    </select>
-    
+
     <button class="btn btn-in">IN</button>
     <button class="btn btn-out">OUT</button>
   </div>
