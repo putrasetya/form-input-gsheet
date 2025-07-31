@@ -2,50 +2,89 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Form Stok Gudang</title>
+  <title>Form Gudang</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     body {
-      font-family: sans-serif;
-      padding: 2em;
-      max-width: 600px;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      max-width: 500px;
       margin: auto;
     }
-    input, button {
-      display: block;
-      margin-bottom: 1em;
-      padding: 0.5em;
+
+    input, select, button {
       width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .success {
+      color: green;
+    }
+
+    .error {
+      color: red;
     }
   </style>
 </head>
 <body>
-  <h2>Form Input Stok Gudang</h2>
+
+  <h2>Form Input Gudang</h2>
+
   <form id="myForm">
     <input name="article" type="text" placeholder="Article" required />
     <input name="qty" type="number" placeholder="Quantity" required />
+    <input name="pic" type="text" placeholder="PIC (penanggung jawab)" required />
+    
+    <select name="reason" required>
+      <option value="" disabled selected>Pilih Reason</option>
+      <option value="in">In</option>
+      <option value="out">Out</option>
+    </select>
+
     <button type="submit">Kirim</button>
   </form>
 
   <p id="msg"></p>
 
   <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbx3_4nl6-l4DKvZQDU85ZnWzjjlYSugFGQriMPJHU6KqNQd0K6CLJSxZXAdwdpePuXF/exec'; // Ganti ini
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbx3_4nl6-l4DKvZQDU85ZnWzjjlYSugFGQriMPJHU6KqNQd0K6CLJSxZXAdwdpePuXF/exec'; // Ganti dengan link Web App kamu
     const form = document.getElementById('myForm');
     const msg = document.getElementById('msg');
 
     form.addEventListener('submit', e => {
       e.preventDefault();
-      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+
+      const now = new Date().toLocaleString('id-ID'); // waktu lokal Indonesia
+      const formData = new FormData(form);
+      formData.append("history", now); // tambahkan kolom waktu
+
+      fetch(scriptURL, { method: 'POST', body: formData })
         .then(response => {
-          msg.innerText = "Berhasil dikirim!";
+          msg.innerText = "✅ Data berhasil dikirim!";
+          msg.className = "success";
           form.reset();
         })
         .catch(error => {
-          msg.innerText = "Gagal mengirim!";
+          msg.innerText = "❌ Gagal mengirim data.";
+          msg.className = "error";
           console.error('Error!', error.message);
         });
     });
   </script>
+
 </body>
 </html>
